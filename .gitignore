@@ -1,0 +1,13 @@
+.idea
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+vs_code/
+.pyvenv.cfg
+pyvenv.cfg
+bin
+lib
+lib64
+share
