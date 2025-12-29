@@ -13,3 +13,8 @@ lib64
 share
 dataset
 dataset\dataset
+dataset/
+dataset/dataset
+*.tar.gz
+dataset
+dataset/
