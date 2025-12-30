@@ -1,2 +1,2 @@
 # Vision-Transformer-Model
-Developed a hybrid vision transformer using ImageNet dataset.
+Developing a hybrid vision transformer using Food101 dataset.
