@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader, Dataset, random_split
 from torchvision.transforms import transforms
 
+
 class DataPipeLine:
     def __init__(self, dataClass:Dataset, path="dataset", download=True, image_shape=(64, 64), batch_size=1024, prefetch_factor=2,\
                  num_workers=4, pin_memory=True,transform=None, valid_transform=None) :
@@ -104,6 +105,39 @@ class DataPipeLine:
                                  prefetch_factor=self.prefetch_factor, pin_memory=self.pin_memory, collate_fn=collate_fn)
     
          return dataloader
+
+    def plot_img(self, **kwargs):
+        image = None
+        label = None
+        ax = plt
+
+        if kwargs:
+            if kwargs.get("sample"):
+                image, label = kwargs("sample")
+            else:
+                image = kwargs['image']
+                label = kwargs['label']
+
+            if kwargs.get("ax"):
+                ax = kwargs['ax']
+
+        image = image.permute(1, 2, 0)
+        image = image.clamp(0, 1)
+        ax.imshow(image)
+        ax.axis("off")
+        ax.title(f"Image label: {label}")
+        plt.show();
+
+    @staticmethod
+    def factor(n):
+        _temp = torch.arange(2, n)
+        _temp = _temp[n%_temp == 0]
+        
+        return _temp
+        
+       
+
+        
         
 
         
