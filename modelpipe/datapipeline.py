@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader, Dataset, random_split
 from torchvision.transforms import transforms
 
-
 class DataPipeLine:
     def __init__(self, dataClass:Dataset, path="dataset", download=True, image_shape=(64, 64), batch_size=1024, prefetch_factor=2,\
                  num_workers=4, pin_memory=True,transform=None, valid_transform=None) :
@@ -47,10 +46,10 @@ class DataPipeLine:
     
     
     def download(self, down_load=True):
-        self.trainDatasetInstance = self.dataClass(root=self.path, download=down_load, train=True, transform=self.transform)
+        self.trainDatasetInstance = self.dataClass(root=self.path, download=down_load, split="train", transform=self.transform)
         self.trainset_length = len(self.trainDatasetInstance)
         
-        self.testDatasetInstance = self.dataClass(root=self.path, download=down_load, train=False, transform=self.valid_transform)
+        self.testDatasetInstance = self.dataClass(root=self.path, download=down_load, split="test", transform=self.valid_transform)
         self.testset_length = len(self.testDatasetInstance)
     
         print(f"Downloaded | Training set: {self.trainset_length} | Testing set: {self.testset_length}")

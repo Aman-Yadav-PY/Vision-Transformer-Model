@@ -58,3 +58,5 @@ experiments/
 *.hdf5
 *.npy
 *.npz
+*.egg-info__pycache__
+*.egg-info/
