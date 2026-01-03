@@ -20,8 +20,6 @@ dataset
 dataset/
 datasets
 dataset/
-
-# PyTorch and model artifacts
 *.pt
 *.pth
 *.pth.tar
@@ -36,8 +34,6 @@ dataset/
 *.hdf5
 *.npy
 *.npz
-
-# Common model folders
 checkpoints/
 weights/
 models/
@@ -58,5 +54,4 @@ experiments/
 *.hdf5
 *.npy
 *.npz
-*.egg-info__pycache__
 *.egg-info/
