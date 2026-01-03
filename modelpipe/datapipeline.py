@@ -100,7 +100,7 @@ class DataPipeLine:
              _temp_dataset = sampler(self.trainDatasetInstance)
              _shuffle = False
              
-         dataloader = DataLoader(_temp_dataset, batch_size = self.batch_size, shuffle=_shuffle, num_workers=min(4, os.cpu_count()),\
+         dataloader = DataLoader(_temp_dataset, batch_size = self.batch_size, shuffle=_shuffle, num_workers=min(4, os.cpu_count()-1),\
                                  prefetch_factor=self.prefetch_factor, pin_memory=self.pin_memory, collate_fn=collate_fn)
     
          return dataloader
