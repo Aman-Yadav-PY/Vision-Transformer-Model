@@ -1,12 +1,14 @@
 import torch
 import torch.nn as nn
+from modelpipe import PatchEmbeddings
+from modelpipe import PositionalEncodings
 
 
 class MultiHeadSelfAttention(nn.Module):
     def __init__(self, nhead, d_model):
         super(MultiHeadSelfAttention, self).__init__()
         assert d_model % nhead == 0
-        
+
         self.nhead = nhead
 
         self.Wq = nn.Linear(d_model, d_model)
