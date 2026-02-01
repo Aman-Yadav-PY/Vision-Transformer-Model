@@ -4,8 +4,9 @@ from .positionalencoding import PositionalEncodings
 from .patchembedding import PatchEmbeddings
 from .transformer import MultiHeadSelfAttention,\
                         TransformerEncoderLayer, TransformerEncoder
-from .hybridvitnet import HybridVitNet
 from .classifierheadnet import ClassifierHead
+from .hybridvitnet import HybridVitNet
+
 
 
 __all__ = ["DataPipeLine", 
@@ -15,6 +16,6 @@ __all__ = ["DataPipeLine",
            "MultiHeadSelfAttention", 
            "TransformerEncoderLayer", 
            "TransformerEncoder",
-           "HybridVitNet",
-           "ClassifierHead"]
+           "ClassifierHead",
+           "HybridVitNet",]
 

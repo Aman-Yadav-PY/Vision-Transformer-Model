@@ -5,8 +5,9 @@ class ClassifierHead(nn.Module):
     def __init__(self, in_feat, out_feat, **kwargs):
         super(ClassifierHead, self).__init__()
 
-        if kwargs:
-            self.hidden = kwargs['hidden']
+        self.hidden = [in_feat//2**(i+1) for i in range(2)]
+        self.hidden = self.hidden + list(reversed(self.hidden))
+
             
         self.fnn_in = nn.Linear(in_feat, self.hidden[0])
         self.fnn = nn.ModuleList()
@@ -16,7 +17,7 @@ class ClassifierHead(nn.Module):
             self.fnn.append(nn.GELU())
 
         self.fnn_out = nn.Linear(self.hidden[-1], out_feat)
-        self.probs = nn.Softmax()
+        self.probs = nn.Softmax(dim=1)
 
     def forward(self, x):
         x = self.fnn_in(x)
