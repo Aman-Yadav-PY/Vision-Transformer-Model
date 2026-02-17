@@ -77,9 +77,9 @@ class DataPipeLine:
             _val_length = int(split_size * self.testset_length)
             _test_length =  self.testset_length - _val_length
     
-            self.testDatasetInstance, self.validDatasetInstance =  random_split(self.trainDatasetInstance, 
+            self.testDatasetInstance, self.validDatasetInstance =  random_split(self.testDatasetInstance, 
                                                                                  [_test_length, _val_length], 
-                                                                                 generator=torch.Generator().manual_seed(self.seed))
+                                                                                 generator=torch.Generator().manual_seed(seed))
     
             self.testset_length = len(self.trainDatasetInstance)
             self.validset_length = len(self.validDatasetInstance)
@@ -112,7 +112,7 @@ class DataPipeLine:
 
         if kwargs:
             if kwargs.get("sample"):
-                image, label = kwargs("sample")
+                image, label = kwargs.get("sample")
             else:
                 image = kwargs['image']
                 label = kwargs['label']
