@@ -49,7 +49,7 @@ class TransformerEncoderLayer(nn.Module):
         self.norm = nn.LayerNorm(emb_dim)
 
         self.model = nn.Sequential(nn.Linear(emb_dim, emb_dim*4), nn.GELU(), 
-                                   nn.Linear(emb_dim*4, emb_dim))
+                                   nn.Dropout(0.3), nn.Linear(emb_dim*4, emb_dim))
 
     def forward(self, x):
         x = self.mhsa(x)
