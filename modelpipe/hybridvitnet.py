@@ -21,6 +21,7 @@ class HybridVitNet(nn.Module):
                  stride=1, 
                  max_seq_len=5000,
                  generator = None,
+                 logits=False,
                  **kwargs):
         
 
@@ -37,7 +38,7 @@ class HybridVitNet(nn.Module):
 
         self.encoder = encoder or TransformerEncoder(num_layers=num_layers,nheads=nheads, emb_dim=emb_dim)
         
-        self.classifier = classifier or ClassifierHead(in_feat=emb_dim, out_feat=num_classes)
+        self.classifier = classifier or ClassifierHead(in_feat=emb_dim, out_feat=num_classes, logits=logits)
         self.cls_token =  nn.Parameter(torch.randn(1, 1, self.emb_dim))
         nn.init.normal_(self.cls_token, std=0.02)
 
