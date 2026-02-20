@@ -2,11 +2,12 @@ import torch
 import torch.nn as nn
 
 class ClassifierHead(nn.Module):
-    def __init__(self, in_feat, out_feat, **kwargs):
+    def __init__(self, in_feat, out_feat, logits=False, **kwargs):
         super(ClassifierHead, self).__init__()
 
         self.hidden = [in_feat//2**(i+1) for i in range(2)]
         self.hidden = self.hidden + list(reversed(self.hidden))
+        self.logits = logits
 
             
         self.fnn_in = nn.Linear(in_feat, self.hidden[0])
@@ -17,7 +18,9 @@ class ClassifierHead(nn.Module):
             self.fnn.append(nn.GELU())
 
         self.fnn_out = nn.Linear(self.hidden[-1], out_feat)
-        self.probs = nn.Softmax(dim=1)
+
+        if not logits:
+            self.probs = nn.Softmax(dim=1)
 
     def forward(self, x):
         x = self.fnn_in(x)
@@ -26,7 +29,7 @@ class ClassifierHead(nn.Module):
             x = layer(x)
 
         x = self.fnn_out(x)
-        return self.probs(x)
+        return x if self.logits else self.probs(x)
 
 
         
