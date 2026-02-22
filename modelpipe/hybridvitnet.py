@@ -15,7 +15,7 @@ class HybridVitNet(nn.Module):
                  num_classes=None,
                  num_layers=10,
                  nheads=4, 
-                 emb_dim=784, 
+                 emb_dim=768, 
                  in_channels=1280, 
                  kernel=1, 
                  stride=1, 
@@ -32,7 +32,7 @@ class HybridVitNet(nn.Module):
         self.emb_dim = emb_dim 
         self.base_model = base_model or PretrainedBaseModel(pretrained_model, True)
 
-        self.patchifier = patchifier or PatchEmbeddings(kernel=kernel, stride=stride)
+        self.patchifier = patchifier or PatchEmbeddings(kernel=kernel, stride=stride, out_feat=emb_dim)
 
         self.pos_encoder = pos_encoder or PositionalEncodings(seq_len=max_seq_len, emb_dim=emb_dim)
 
